@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-book"></i> Notes App</h1>
+
+        <!-- Form untuk menambahkan catatan -->
+        <form id="note-form">
+            <input type="text" id="judul" placeholder="Masukkan judul catatan" required>
+            <textarea id="deskripsi" placeholder="Masukkan deskripsi catatan" required></textarea>
+            <button type="submit"><i class="fas fa-save icon"></i> Simpan</button>
+        </form>
+
+        <!-- Daftar catatan -->
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th>Tanggal</th>
+                    <th>Opsi</th>
+                </tr>
+            </thead>
+            <tbody id="table-notes">
+                <!-- Data catatan akan ditampilkan di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal untuk membaca catatan -->
+    <div id="note-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <p id="modal-tanggal"></p>
+            <button onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

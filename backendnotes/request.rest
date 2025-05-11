@@ -1,0 +1,24 @@
+### Mendapatkan semua catatan
+GET http://localhost:5000/notes
+
+### Menambahkan catatan baru
+POST http://localhost:5000/notes
+Content-Type: application/json
+
+{
+    "judul": "Catatan bersejarah",
+    "deskripsi": "Hari ini saya belajar dasar dasar backend."
+}
+
+
+### Memperbarui catatan berdasarkan ID
+PUT http://localhost:5000/notes/12
+Content-Type: application/json
+
+{
+    "judul": "Catatan Perjalanan",
+    "deskripsi": "Saya melakukan perjalanan ke gunung dan menikmati keindahan alam."
+}
+
+### Menghapus catatan berdasarkan ID
+DELETE http://localhost:5000/notes/12
