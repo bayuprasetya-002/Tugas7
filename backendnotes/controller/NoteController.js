@@ -37,25 +37,24 @@ async function createNote(req, res) {
 }
 // PUT (Memperbarui catatan)
 async function updateNote(req, res) {
-    try {
-        const { id } = req.params;
-        const { judul, deskripsi, tanggal } = req.body; // Pastikan tanggal diterima
-        const updateInput = { judul, deskripsi, tanggal };
+  try {
+    const { id } = req.params;
+    const { judul, deskripsi } = req.body; // Hanya judul & deskripsi
 
-        const note = await Note.findOne({ where: { id } });
+    const note = await Note.findOne({ where: { id } });
 
-        if (!note) {
-            return res.status(404).json({ message: "Catatan tidak ditemukan" });
-        }
-
-        // Update catatan dan simpan tanggal baru
-        await Note.update(updateInput, { where: { id } });
-
-        res.status(200).json({ message: "Catatan berhasil diperbarui" });
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).json({ message: "Terjadi kesalahan saat memperbarui catatan" });
+    if (!note) {
+      return res.status(404).json({ message: "Catatan tidak ditemukan" });
     }
+
+    // Update hanya judul & deskripsi, updatedAt otomatis diperbarui oleh Sequelize
+    await Note.update({ judul, deskripsi }, { where: { id } });
+
+    res.status(200).json({ message: "Catatan berhasil diperbarui" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Terjadi kesalahan saat memperbarui catatan" });
+  }
 }
 
 // DELETE (Menghapus catatan)
@@ -76,4 +75,31 @@ async function deleteNote(req, res) {
     }
 }
 
-export { getNotes, createNote, updateNote, deleteNote };
+// GET note by ID
+async function getNoteById(req, res) {
+  try {
+    const { id } = req.params;
+    const note = await Note.findOne({ where: { id } });
+
+    if (!note) {
+      return res.status(404).json({ message: "Catatan tidak ditemukan" });
+    }
+
+    // Format tanggal supaya konsisten seperti getNotes
+    const formattedNote = {
+      id: note.id,
+      judul: note.judul,
+      deskripsi: note.deskripsi,
+      createdAt: new Date(note.createdAt).toISOString(),
+      updatedAt: new Date(note.updatedAt).toISOString(),
+    };
+
+    res.status(200).json(formattedNote);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Terjadi kesalahan saat mengambil catatan" });
+  }
+}
+
+
+export { getNotes, createNote, updateNote, deleteNote,getNoteById };

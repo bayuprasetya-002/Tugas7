@@ -1,51 +1,120 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes App</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Notes App dengan Autentikasi JWT</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f0f8ff;
+  }
+  .container, #auth-container, #register-container {
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+  input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .logout-btn {
+    background-color: #dc3545;
+    margin-bottom: 15px;
+  }
+  .hidden {
+    display: none;
+  }
+  .toggle-link {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1><i class="fas fa-book"></i> Notes App</h1>
 
-        <!-- Form untuk menambahkan catatan -->
-        <form id="note-form">
-            <input type="text" id="judul" placeholder="Masukkan judul catatan" required>
-            <textarea id="deskripsi" placeholder="Masukkan deskripsi catatan" required></textarea>
-            <button type="submit"><i class="fas fa-save icon"></i> Simpan</button>
-        </form>
+<!-- FORM LOGIN -->
+<div id="auth-container" class="container">
+  <h2>Login</h2>
+  <input type="text" id="login-username-email" placeholder="Username atau Email" />
+  <input type="password" id="login-password" placeholder="Password" />
+  <button id="login-btn">Login</button>
+  <p>Belum punya akun? <button id="show-register-btn" class="toggle-link">Daftar</button></p>
+</div>
 
-        <!-- Daftar catatan -->
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul</th>
-                    <th>Tanggal</th>
-                    <th>Opsi</th>
-                </tr>
-            </thead>
-            <tbody id="table-notes">
-                <!-- Data catatan akan ditampilkan di sini -->
-            </tbody>
-        </table>
-    </div>
+<!-- FORM REGISTER -->
+<div id="register-container" class="container hidden">
+  <h2>Daftar Akun Baru</h2>
+  <input type="text" id="register-username" placeholder="Username" />
+  <input type="email" id="register-email" placeholder="Email" />
+  <input type="password" id="register-password" placeholder="Password" />
+  <button id="register-btn">Daftar</button>
+  <p>Sudah punya akun? <button id="show-login-btn" class="toggle-link">Login</button></p>
+</div>
 
-    <!-- Modal untuk membaca catatan -->
-    <div id="note-modal" class="modal">
-        <div class="modal-content">
-            <h2 id="modal-title"></h2>
-            <p id="modal-description"></p>
-            <p id="modal-tanggal"></p>
-            <button onclick="closeModal()">Tutup</button>
-        </div>
-    </div>
+<!-- NOTES CONTAINER -->
+<div class="container hidden" id="notes-container">
+  <h1>Notes App</h1>
+  <button id="logout-btn" class="logout-btn">Logout</button>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/script.js"></script>
+  <form id="note-form">
+    <input type="text" id="judul" placeholder="Masukkan judul catatan" data-id="" required />
+    <textarea id="deskripsi" placeholder="Masukkan deskripsi catatan" required></textarea>
+    <button type="submit">Simpan Catatan</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Judul</th>
+        <th>Deskripsi</th>  <!-- Kolom deskripsi ditambahkan -->
+        <th>Tanggal</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="table-notes"></tbody>
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 </html>

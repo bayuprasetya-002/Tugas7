@@ -1,20 +1,22 @@
+/* Import Font Awesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
+/* ===== Body dan Container Utama ===== */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(to right, #4facfe, #00f2fe);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start; /* agar container di atas */
+    padding-top: 40px;
 }
 
-/* Kontainer utama */
-.container {
+.container, #auth-container, #register-container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 450px;
     background: white;
     padding: 30px;
     border-radius: 12px;
@@ -22,14 +24,15 @@ body {
     text-align: center;
 }
 
-/* Judul */
-h1 {
+/* ===== Judul Halaman ===== */
+h1, h2 {
     color: #007bff;
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
-/* Form */
+/* ===== Form Input (Login, Register, Note) ===== */
 form {
     display: flex;
     flex-direction: column;
@@ -45,6 +48,7 @@ input, textarea {
     font-size: 16px;
     box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    resize: vertical;
 }
 
 input:focus, textarea:focus {
@@ -53,9 +57,9 @@ input:focus, textarea:focus {
     box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Tombol */
+/* ===== Tombol ===== */
 button {
-    background: #28a745;
+    background: #007bff;
     color: white;
     padding: 12px;
     border: none;
@@ -66,11 +70,21 @@ button {
 }
 
 button:hover {
-    background: #218838;
+    background: #0056b3;
     transform: scale(1.05);
 }
 
-/* Tabel */
+/* Tombol link (untuk toggle login/register) */
+.toggle-link {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+}
+
+/* ===== Tabel Daftar Catatan ===== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -103,20 +117,15 @@ td:hover {
     background: #f1f1f1;
 }
 
-/* Tombol dalam tabel */
-td .tombol-aksi {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
+/* ===== Tombol Aksi di Tabel ===== */
 td button {
-    padding: 10px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: all 0.3s ease;
+    margin: 0 3px;
 }
 
 .btn-edit {
@@ -128,16 +137,23 @@ td button {
     background: #e0a800;
 }
 
-.btn-hapus {
+.btn-delete {
     background: #dc3545;
     color: white;
 }
 
-.btn-hapus:hover {
+.btn-delete:hover {
     background: #c82333;
 }
 
-/* ====== MODAL (Untuk membaca catatan) ====== */
+/* ===== Tombol Logout ===== */
+.logout-btn {
+    background-color: #dc3545;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* ===== Modal untuk Detail Catatan ===== */
 .modal {
     display: none;
     position: fixed;
@@ -177,6 +193,9 @@ td button {
     background: #007bff;
     padding: 10px 15px;
     font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
 }
 
 .modal button:hover {
@@ -184,14 +203,14 @@ td button {
     transform: scale(1.05);
 }
 
-/* Responsif */
+/* ===== Responsif untuk layar kecil ===== */
 @media (max-width: 768px) {
-    .container {
+    .container, #auth-container, #register-container {
         width: 95%;
         padding: 20px;
     }
 
-    h1 {
+    h1, h2 {
         font-size: 24px;
     }
 
