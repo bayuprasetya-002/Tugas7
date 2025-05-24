@@ -1,24 +1,45 @@
-### Mendapatkan semua catatan
+### Register User
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+  "username": "userbaru",
+  "email": "userbaru@example.com",
+  "password": "password123"
+}
+
+### Login User
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "userbaru",
+  "password": "password123"
+}
+
+### Get All Notes
 GET http://localhost:5000/notes
 
-### Menambahkan catatan baru
+
+### Create New Note
 POST http://localhost:5000/notes
 Content-Type: application/json
 
 {
-    "judul": "Catatan bersejarah",
-    "deskripsi": "Hari ini saya belajar dasar dasar backend."
+  "judul": "Catatan bersejarah",
+  "deskripsi": "Hari ini saya belajar dasar dasar backend."
 }
 
-
-### Memperbarui catatan berdasarkan ID
+### Update Note By ID
 PUT http://localhost:5000/notes/12
 Content-Type: application/json
 
+
 {
-    "judul": "Catatan Perjalanan",
-    "deskripsi": "Saya melakukan perjalanan ke gunung dan menikmati keindahan alam."
+  "judul": "Catatan Perjalanan",
+  "deskripsi": "Saya melakukan perjalanan ke gunung dan menikmati keindahan alam."
 }
 
-### Menghapus catatan berdasarkan ID
+### Delete Note By ID
 DELETE http://localhost:5000/notes/12
+
