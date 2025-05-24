@@ -25,7 +25,6 @@ steps:
         "--region",
         "us-central1",
         "--allow-unauthenticated",
-        "ACCESS_TOKEN_SECRET=${_ACCESS_TOKEN_SECRET},REFRESH_TOKEN_SECRET=${_REFRESH_TOKEN_SECRET},DB_HOST=${_DB_HOST},DB_NAME=${_DB_NAME},DB_PASSWORD=${_DB_PASSWORD},DB_USERNAME=${_DB_USERNAME}"
       ]
 
 # Log hanya akan disimpan di Google Cloud Logging
