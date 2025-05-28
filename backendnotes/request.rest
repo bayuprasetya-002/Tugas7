@@ -19,11 +19,12 @@ Content-Type: application/json
 
 ### Get All Notes
 GET http://localhost:5000/notes
-
+Authorization: Bearer <accessToken>
 
 ### Create New Note
 POST http://localhost:5000/notes
 Content-Type: application/json
+Authorization: Bearer <accessToken>
 
 {
   "judul": "Catatan bersejarah",
@@ -33,7 +34,7 @@ Content-Type: application/json
 ### Update Note By ID
 PUT http://localhost:5000/notes/12
 Content-Type: application/json
-
+Authorization: Bearer <accessToken>
 
 {
   "judul": "Catatan Perjalanan",
@@ -42,4 +43,5 @@ Content-Type: application/json
 
 ### Delete Note By ID
 DELETE http://localhost:5000/notes/12
+Authorization: Bearer <accessToken>
 
